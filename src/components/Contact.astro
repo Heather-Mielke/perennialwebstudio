@@ -1,5 +1,10 @@
 ---
 import { contactInterestedOptions } from "../data/pricing.ts";
+
+/** Vercel / static: get a key at https://web3forms.com (free), add in Vercel → Settings → Environment Variables */
+const web3AccessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
+const siteUrl = (import.meta.env.PUBLIC_SITE_URL ?? "").replace(/\/$/, "");
+const contactRedirect = siteUrl ? `${siteUrl}/#contact?sent=1` : "";
 ---
 
 <section id="contact" class="section section--contact">
@@ -28,8 +33,34 @@ import { contactInterestedOptions } from "../data/pricing.ts";
     </div>
 
     <div class="contact-form-shell">
-      <form class="form form--contact-card" name="contact" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="contact" />
+      {import.meta.env.DEV && !web3AccessKey ? (
+        <p class="contact-form-dev-hint" role="status">
+          Add <code>PUBLIC_WEB3FORMS_ACCESS_KEY</code> to <code>.env</code> (see <code>.env.example</code>) so submissions
+          reach your email on Vercel.
+        </p>
+      ) : null}
+      <div
+        class="contact-form-alert contact-form-alert--success"
+        data-contact-success
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        Thanks — your message was sent. We’ll be in touch soon.
+      </div>
+      <div class="contact-form-alert contact-form-alert--error" data-contact-error role="alert" aria-live="assertive" hidden>
+        Something went wrong. Please try again, or email us directly.
+      </div>
+      <form
+        class="form form--contact-card"
+        name="contact"
+        method="POST"
+        action="https://api.web3forms.com/submit"
+      >
+        <input type="hidden" name="access_key" value={web3AccessKey} />
+        <input type="hidden" name="subject" value="Contact form — Perennial Web Studio" />
+        {contactRedirect ? <input type="hidden" name="redirect" value={contactRedirect} /> : null}
+        <input type="checkbox" name="botcheck" class="contact-form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
         <div class="form__row form__row--split">
           <div class="form__field">
@@ -122,13 +153,138 @@ import { contactInterestedOptions } from "../data/pricing.ts";
           />
         </div>
 
-        <button class="button button--contact-submit" type="submit">
+        <button class="button button--contact-submit" type="submit" data-contact-submit>
           <svg class="button__icon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path fill="currentColor" d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z" />
           </svg>
-          Send message
+          <span data-contact-submit-label>Send message</span>
         </button>
       </form>
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    const SUCCESS_MS = 6000;
+    var successHideTimer;
+
+    function parseHashQuery() {
+      var raw = window.location.hash.replace(/^#/, "");
+      var q = raw.indexOf("?");
+      if (q === -1) return null;
+      return new URLSearchParams(raw.slice(q + 1));
+    }
+
+    function stripSentFromHash() {
+      var raw = window.location.hash.replace(/^#/, "");
+      var q = raw.indexOf("?");
+      if (q === -1) return;
+      var path = raw.slice(0, q);
+      var params = new URLSearchParams(raw.slice(q + 1));
+      params.delete("sent");
+      var next = params.toString() === "" ? "#" + path : "#" + path + "?" + params.toString();
+      history.replaceState(null, "", window.location.pathname + window.location.search + next);
+    }
+
+    function wireContactForm() {
+      var root = document.getElementById("contact");
+      if (!root || root.dataset.contactWired === "true") return;
+
+      var form = root.querySelector('form[name="contact"]');
+      var successEl = root.querySelector("[data-contact-success]");
+      var errorEl = root.querySelector("[data-contact-error]");
+      var submitBtn = root.querySelector("[data-contact-submit]");
+      var submitLabel = root.querySelector("[data-contact-submit-label]");
+
+      if (!form || !successEl || !errorEl || !submitBtn) return;
+      root.dataset.contactWired = "true";
+
+      function hideAlerts() {
+        successEl.hidden = true;
+        errorEl.hidden = true;
+      }
+
+      function showSuccess() {
+        if (successHideTimer !== undefined) clearTimeout(successHideTimer);
+        hideAlerts();
+        successEl.hidden = false;
+        successEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        successHideTimer = window.setTimeout(function () {
+          successEl.hidden = true;
+          successHideTimer = undefined;
+        }, SUCCESS_MS);
+      }
+
+      function showError() {
+        if (successHideTimer !== undefined) {
+          clearTimeout(successHideTimer);
+          successHideTimer = undefined;
+        }
+        hideAlerts();
+        errorEl.hidden = false;
+        errorEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+
+      var hashParams = parseHashQuery();
+      if (hashParams && hashParams.get("sent") === "1") {
+        showSuccess();
+        stripSentFromHash();
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        hideAlerts();
+
+        var accessKeyInput = form.querySelector('input[name="access_key"]');
+        if (!accessKeyInput || !accessKeyInput.value) {
+          showError();
+          return;
+        }
+
+        var formData = new FormData(form);
+        var payload = {};
+        formData.forEach(function (value, key) {
+          if (typeof value === "string" && key !== "redirect") payload[key] = value;
+        });
+
+        submitBtn.disabled = true;
+        if (submitLabel) submitLabel.textContent = "Sending…";
+
+        try {
+          var res = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+            },
+            body: JSON.stringify(payload),
+          });
+          var data = await res.json();
+
+          if (res.ok && data.success) {
+            form.reset();
+            showSuccess();
+          } else {
+            showError();
+          }
+        } catch (err) {
+          showError();
+        } finally {
+          submitBtn.disabled = false;
+          if (submitLabel) submitLabel.textContent = "Send message";
+        }
+      });
+    }
+
+    function initContactForm() {
+      wireContactForm();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initContactForm, { once: true });
+    } else {
+      initContactForm();
+    }
+  })();
+</script>

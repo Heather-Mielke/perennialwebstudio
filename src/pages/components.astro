@@ -63,4 +63,44 @@ import ComponentDemos from "../components/library/ComponentDemos.astro";
 
     go(0);
   });
+
+  document.querySelectorAll("[data-lib-modal-root]").forEach((root) => {
+    const openBtn = root.querySelector("[data-lib-modal-open]");
+    const overlay = root.querySelector("[data-lib-modal-overlay]");
+    const dialog = root.querySelector('[role="dialog"]');
+    const closeBtns = root.querySelectorAll("[data-lib-modal-close]");
+
+    if (!openBtn || !overlay || !dialog) return;
+
+    let lastFocus = null;
+
+    function onEscape(e) {
+      if (e.key === "Escape") close();
+    }
+
+    function open() {
+      lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      overlay.classList.remove("hidden");
+      overlay.classList.add("flex");
+      overlay.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      dialog.focus();
+      document.addEventListener("keydown", onEscape);
+    }
+
+    function close() {
+      overlay.classList.add("hidden");
+      overlay.classList.remove("flex");
+      overlay.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      document.removeEventListener("keydown", onEscape);
+      lastFocus?.focus?.();
+    }
+
+    openBtn.addEventListener("click", open);
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) close();
+    });
+    closeBtns.forEach((btn) => btn.addEventListener("click", close));
+  });
 </script>

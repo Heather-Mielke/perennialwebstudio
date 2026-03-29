@@ -45,6 +45,14 @@ export function isNavLinkCurrent(
     return false;
   }
 
+  /** Home: active on `/` only when no hash and not scrolled into a home section (hero / top). */
+  if (!hash && path === "/") {
+    if (pn !== "/") return false;
+    if (ctx.hash) return false;
+    if (ctx.homeSectionId) return false;
+    return true;
+  }
+
   return pn === path;
 }
 

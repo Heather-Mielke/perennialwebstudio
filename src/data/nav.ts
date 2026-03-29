@@ -1,5 +1,6 @@
 /** Header: no Contact (Get a Quote → /#contact); no /components (Examples in footer only). */
 export const headerNav = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Pricing", href: "/#pricing" },
