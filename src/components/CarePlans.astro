@@ -1,0 +1,71 @@
+---
+import { carePlans } from "../data/pricing.ts";
+---
+
+<section id="care-plans" class="section section--flow section--care-plans" aria-labelledby="care-heading">
+  <div class="section__head">
+    <p class="section__eyebrow">Ongoing support</p>
+    <h2 id="care-heading">Website care plans</h2>
+    <p>
+      Your website needs ongoing attention to stay sharp. Our care plans keep things running smoothly so you can focus
+      on your business.
+    </p>
+  </div>
+
+  <div class="pricing pricing--two">
+    {carePlans.map((p) => (
+      <article class={`price-card price-card--care ${p.featured ? "price-card--featured" : ""}`}>
+        {p.badge && <span class="price-card__badge">{p.badge}</span>}
+        <div class="price-card__main">
+          <header class="price-card__header">
+            <div class="price-card__icon price-card__icon--care" aria-hidden="true">
+              {p.name === "Sprout Care" && (
+                <svg class="price-card__icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="8.25" />
+                  <path d="M12 7.25c-1.4 2.4-3.75 5-3.75 7.75a3.75 3.75 0 007.5 0c0-2.75-2.35-5.35-3.75-7.75z" />
+                </svg>
+              )}
+              {p.name === "Growth Care" && (
+                <svg class="price-card__icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <circle cx="12" cy="12" r="4" />
+                  <path d="M12 2.5v2.5M12 19v2.5M4.5 12h2.5M17 12h2.5M6.4 6.4l1.8 1.8M15.8 15.8l1.8 1.8M6.4 17.6l1.8-1.8M15.8 8.2l1.8-1.8" />
+                </svg>
+              )}
+            </div>
+            <div class="price-card__titles">
+              <h4>{p.name}</h4>
+              <p class="note price-card__subtitle">{p.tagline}</p>
+            </div>
+          </header>
+          <p class="price-card__description">{p.description}</p>
+          <ul>
+            {p.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </div>
+        <footer class="price-card__footer">
+          <div class="price-card__divider" aria-hidden="true" />
+          <p class="price-card__care-price-row">
+            <span class="price-card__care-amount">{p.priceAmount}</span>
+            <span class="price-card__care-period">{p.pricePeriod}</span>
+          </p>
+          <a
+            class={`button price-card__cta ${p.featured ? "button--primary" : "button--secondary price-card__cta--outline-care"}`}
+            href="#contact"
+          >
+            Choose Plan
+          </a>
+        </footer>
+      </article>
+    ))}
+  </div>
+
+  <p class="smallprint">
+    Domain, hosting, third-party subscription costs, copywriting, branding, logo design, and stock photography are not
+    included unless specifically listed in your quote. Care plans cover small ongoing updates to existing pages only.
+    If a business needs online ordering, secure checkout, memberships, customer accounts, bookings handled through a
+    separate platform, or other advanced functionality, outside services can be linked from the site when appropriate,
+    but custom system setup and application-style features are not included.
+  </p>
+</section>

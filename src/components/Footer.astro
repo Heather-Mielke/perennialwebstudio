@@ -1,5 +1,4 @@
 ---
-import LogoMark from "./LogoMark.astro";
 import { footerNav } from "../data/nav.ts";
 import { isNavLinkCurrent } from "../lib/navCurrent";
 
@@ -32,7 +31,15 @@ const contactRows = [
   <div class="footer__inner">
     <div class="footer__head">
       <a class="footer__brand" href="/" aria-label="Perennial Web Studio home">
-        <LogoMark />
+        <img
+          class="footer__brand-logo"
+          src="/logo.png"
+          alt=""
+          width="493"
+          height="120"
+          loading="lazy"
+          decoding="async"
+        />
       </a>
       <nav class="footer__nav" aria-label="Footer">
         {footerNav.map((item) => {

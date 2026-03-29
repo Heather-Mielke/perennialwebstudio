@@ -1,0 +1,70 @@
+---
+import { websitePlans } from "../data/pricing.ts";
+---
+
+<section id="pricing" class="section section--flow section--website-packages" aria-labelledby="packages-heading">
+  <div class="section__head">
+    <p class="section__eyebrow">What we offer</p>
+    <h2 id="packages-heading">Website packages</h2>
+    <p>
+      Straightforward one-time pricing for static marketing and informational sites—clear scope, no hidden platforms.
+      E-commerce, customer logins, and custom web apps are out of scope; we focus on sites you can own and maintain.
+    </p>
+  </div>
+
+  <div class="pricing">
+    {websitePlans.map((p) => (
+      <article class={`price-card ${p.featured ? "price-card--featured" : ""}`}>
+        {p.badge && <span class="price-card__badge">{p.badge}</span>}
+        <div class="price-card__main">
+          <header class="price-card__header">
+            <div class="price-card__icon" aria-hidden="true">
+              {p.name === "Seedling" && (
+                <svg class="price-card__icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 19.5V11" />
+                  <path d="M12 11c-3.8-4.5-7-3.5-7 1.2s3.2 5.3 7 3.3c3.8 2 7-.5 7-4.5S15.8 6.5 12 11z" />
+                </svg>
+              )}
+              {p.name === "Evergreen" && (
+                <svg class="price-card__icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+                  <path d="M12 3 5 14h3.2L5 20h14l-3.2-6H19L12 3z" />
+                  <path d="M11 20v3.5h2V20" stroke-linecap="round" />
+                </svg>
+              )}
+              {p.name === "Canopy" && (
+                <svg class="price-card__icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 18.5V14" />
+                  <path d="M12 14c-4.8 0-8.5-2.8-8.5-6.8C3.5 4.5 7 2 12 2s8.5 2.5 8.5 5.2c0 4-3.7 6.8-8.5 6.8z" />
+                </svg>
+              )}
+            </div>
+            <div class="price-card__titles">
+              <h4>{p.name}</h4>
+              <p class="note price-card__subtitle">{p.note}</p>
+            </div>
+          </header>
+          <p class="price-card__description">{p.description}</p>
+          <ul>
+            {p.items.map((i) => (
+              <li>{i}</li>
+            ))}
+          </ul>
+        </div>
+        <footer class="price-card__footer">
+          <div class="price-card__divider" aria-hidden="true" />
+          <p class="price-card__price-row">
+            <span class="price-card__price-start">Starting at</span>
+            <span class="price-card__price-num">{p.price}</span>
+            <span class="price-card__one-time">(one-time)</span>
+          </p>
+          <a
+            class={`button price-card__cta ${p.featured ? "button--primary" : "button--secondary price-card__cta--outline"}`}
+            href="#contact"
+          >
+            Get started
+          </a>
+        </footer>
+      </article>
+    ))}
+  </div>
+</section>

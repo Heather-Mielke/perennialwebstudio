@@ -25,8 +25,19 @@ export function isNavLinkCurrent(
 
   if (hash) {
     if (path !== "/" || pn !== "/") return false;
+    const hf = hash.toLowerCase();
+    const pricingScrollIds = ["pricing", "compare"];
+    if (hf === "#pricing") {
+      const ch = ctx.hash.toLowerCase();
+      if (ctx.hash && (ch === "#pricing" || ch === "#compare")) return true;
+      if (ctx.homeSectionId && pricingScrollIds.includes(ctx.homeSectionId)) return true;
+    }
+    if (hf === "#care-plans") {
+      if (ctx.hash && ctx.hash.toLowerCase() === "#care-plans") return true;
+      if (ctx.homeSectionId === "care-plans") return true;
+    }
     if (ctx.hash) {
-      return ctx.hash.toLowerCase() === hash.toLowerCase();
+      return ctx.hash.toLowerCase() === hf;
     }
     if (ctx.homeSectionId) {
       return hash === `#${ctx.homeSectionId}`;
@@ -42,7 +53,7 @@ export function getHomeActiveSectionId(): string | null {
   if (typeof window === "undefined") return null;
   if (normalizePathname(window.location.pathname) !== "/") return null;
 
-  const ids = ["services", "pricing", "contact"];
+  const ids = ["pricing", "compare", "care-plans", "contact"];
   const triggerLine = 108;
   let current: string | null = null;
   for (const id of ids) {

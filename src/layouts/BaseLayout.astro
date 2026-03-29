@@ -12,13 +12,24 @@ const { title = "Perennial Web Studio", bodyClass = "" } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap"
   rel="stylesheet"
 />
 
     <title>{title}</title>
   </head>
   <body class:list={[bodyClass]}>
+    <script is:inline>
+      (function () {
+        try {
+          if (!document.body.classList.contains("site-body--home")) return;
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+          document.documentElement.classList.add("home-scroll-reveal");
+        } catch (_) {
+          /* no-op */
+        }
+      })();
+    </script>
     <Header />
     <main class="site-main">
       <slot />
@@ -27,7 +38,9 @@ const { title = "Perennial Web Studio", bodyClass = "" } = Astro.props;
 
     <script>
       import { initNavCurrent } from "../lib/navCurrent";
+      import { initHomeMotion } from "../lib/homeMotion";
       initNavCurrent();
+      initHomeMotion();
     </script>
   </body>
 </html>

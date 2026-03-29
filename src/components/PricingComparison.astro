@@ -1,0 +1,58 @@
+---
+import { buildComparisonRows } from "../data/pricing.ts";
+---
+
+<section id="compare" class="section section--flow section--compare" aria-labelledby="compare-heading">
+  <div class="section__head">
+    <p class="section__eyebrow">Compare plans</p>
+    <h2 id="compare-heading">Side-by-side pricing</h2>
+    <p>See how Seedling, Evergreen, and Canopy compare on the details that matter for your launch.</p>
+  </div>
+
+  <div class="pricing-compare-scroll">
+    <table class="pricing-compare" aria-describedby="compare-heading">
+      <thead>
+        <tr>
+          <th scope="col" class="pricing-compare__feature">Feature</th>
+          <th scope="col">Seedling</th>
+          <th scope="col" class="pricing-compare__col--featured">Evergreen</th>
+          <th scope="col">Canopy</th>
+        </tr>
+      </thead>
+      <tbody>
+        {buildComparisonRows.map((row) => (
+          <tr>
+            <th scope="row" class="pricing-compare__feature">{row.feature}</th>
+            <td class="pricing-compare__cell">
+              {typeof row.seedling === "string" ? (
+                <span>{row.seedling}</span>
+              ) : row.seedling ? (
+                <span class="pricing-compare__yes" aria-label="Included">✓</span>
+              ) : (
+                <span class="pricing-compare__no">—</span>
+              )}
+            </td>
+            <td class="pricing-compare__cell pricing-compare__cell--featured">
+              {typeof row.evergreen === "string" ? (
+                <span>{row.evergreen}</span>
+              ) : row.evergreen ? (
+                <span class="pricing-compare__yes" aria-label="Included">✓</span>
+              ) : (
+                <span class="pricing-compare__no">—</span>
+              )}
+            </td>
+            <td class="pricing-compare__cell">
+              {typeof row.canopy === "string" ? (
+                <span>{row.canopy}</span>
+              ) : row.canopy ? (
+                <span class="pricing-compare__yes" aria-label="Included">✓</span>
+              ) : (
+                <span class="pricing-compare__no">—</span>
+              )}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
