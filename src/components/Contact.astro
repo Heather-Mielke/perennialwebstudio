@@ -1,0 +1,124 @@
+---
+const fieldBase =
+  "peer w-full rounded-2xl border border-zinc-300 bg-white px-4 text-sm text-zinc-900 outline-none transition focus:border-[#8e4b77] focus:ring-2 focus:ring-[rgba(142,75,119,0.22)]";
+const inputFloat = `${fieldBase} pb-2.5 pt-4`;
+const textareaFloat = `${fieldBase} min-h-[9rem] resize-y pb-3 pt-6`;
+/** Same shell as text inputs; chevron in global.css. Label float when filled uses :has() (no placeholder-shown on select). */
+const selectFloat = `${fieldBase} cursor-pointer appearance-none pb-2.5 pt-4 pr-10`;
+
+const industryOptions = [
+  "Restaurant / Food",
+  "Salon / Beauty",
+  "Construction / Trades",
+  "Fitness / Wellness",
+  "Retail",
+  "Professional Services",
+  "Other",
+] as const;
+
+const floatLabel =
+  "pointer-events-none absolute left-4 z-10 bg-white px-1 text-sm font-normal leading-none text-zinc-500 transition-all duration-200";
+const floatRestInput =
+  "top-1/2 -translate-y-1/2 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm";
+const floatRestTextarea =
+  "top-4 translate-y-0 peer-placeholder-shown:top-4 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-sm";
+const floatActive =
+  "peer-focus:top-1.5 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:font-medium peer-focus:uppercase peer-focus:tracking-[0.16em] peer-focus:text-zinc-900 peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-medium peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.16em] peer-[:not(:placeholder-shown)]:text-zinc-900";
+
+/** Example copy in the message field: not a label—stays in the box until the user types (see peer variants below). */
+const messageHint =
+  "pointer-events-none absolute left-4 right-4 z-[5] text-sm leading-snug text-zinc-400 transition-[top] duration-200 top-10 peer-focus:top-6 peer-[:not(:placeholder-shown)]:hidden";
+---
+
+<section id="contact" class="section section--alt">
+  <div class="section__head">
+    <p class="section__eyebrow">Get in touch</p>
+    <h2>Contact</h2>
+    <p>Tell me a little about your business and what you need.</p>
+  </div>
+
+  <div class="contact-grid">
+    <div>
+      <h3>Reach out</h3>
+      <p><strong>Email:</strong> hello@perennialwebstudio.com</p>
+      <p><strong>Based in:</strong> Minnesota (available nationwide)</p>
+      <p class="muted">Typical reply time: 1 business day.</p>
+    </div>
+
+    <form class="form form--float-labels" name="contact" method="POST" data-netlify="true">
+      <input type="hidden" name="form-name" value="contact" />
+
+      <div class="float-field relative">
+        <input
+          id="contact-name"
+          name="name"
+          type="text"
+          required
+          placeholder=" "
+          class={inputFloat}
+          autocomplete="name"
+        />
+        <label class:list={[floatLabel, floatRestInput, floatActive]} for="contact-name">Name</label>
+      </div>
+
+      <div class="float-field relative">
+        <input
+          id="contact-email"
+          name="email"
+          type="email"
+          required
+          placeholder=" "
+          class={inputFloat}
+          autocomplete="email"
+        />
+        <label class:list={[floatLabel, floatRestInput, floatActive]} for="contact-email">Email</label>
+      </div>
+
+      <div class="float-field relative">
+        <input
+          id="contact-business"
+          name="business"
+          type="text"
+          required
+          placeholder=" "
+          class={inputFloat}
+          autocomplete="organization"
+        />
+        <label class:list={[floatLabel, floatRestInput, floatActive]} for="contact-business">
+          Business name
+        </label>
+      </div>
+
+      <div class="float-field float-field--industry relative">
+        <select id="contact-industry" name="industry" class={selectFloat}>
+          <option value="">Select one…</option>
+          {industryOptions.map((label) => (
+            <option value={label}>{label}</option>
+          ))}
+        </select>
+        <label class:list={[floatLabel, "contact-industry-label"]} for="contact-industry">
+          Industry or trade <span class="font-normal normal-case tracking-normal text-zinc-400">(optional)</span>
+        </label>
+      </div>
+
+      <div class="float-field relative">
+        <textarea
+          id="contact-message"
+          name="message"
+          rows="5"
+          required
+          placeholder=" "
+          class={textareaFloat}
+        />
+        <label class:list={[floatLabel, floatRestTextarea, floatActive]} for="contact-message">
+          What do you need?
+        </label>
+        <span class={messageHint} aria-hidden="true">
+          e.g. a new website, updates to an existing site, pricing, or what you’d like in a care plan.
+        </span>
+      </div>
+
+      <button class="button button--primary mt-1" type="submit">Send message</button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,119 @@
+---
+import { headerNav } from "../data/nav.ts";
+import { isNavLinkCurrent } from "../lib/navCurrent";
+
+const navCtx = {
+  pathname: Astro.url.pathname,
+  hash: Astro.url.hash || "",
+  homeSectionId: null as string | null,
+};
+
+const contactNavCurrent = isNavLinkCurrent("/#contact", navCtx);
+---
+<header class="header">
+  <div class="header__inner">
+    <a class="brand" href="/" aria-label="Perennial Web Studio home">
+      <img
+        class="brand__logo"
+        src="/logo.png"
+        alt="Perennial Web Studio"
+        width="498"
+        height="245"
+      />
+    </a>
+
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Open menu"
+    >
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+      <span class="nav-toggle__bar" aria-hidden="true"></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      {headerNav.map((item) => {
+        const current = isNavLinkCurrent(item.href, navCtx);
+        return (
+          <a
+            class:list={["nav__link", current && "site-nav-link--current"]}
+            href={item.href}
+            data-nav-href={item.href}
+            aria-current={current ? (item.href.includes("#") ? "true" : "page") : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+      <a
+        class:list={[
+          "nav__cta",
+          "nav__cta--mobile",
+          "button",
+          "button--primary",
+          contactNavCurrent && "site-nav-link--current",
+        ]}
+        href="/#contact"
+        data-nav-href="/#contact"
+        aria-current={contactNavCurrent ? "true" : undefined}
+      >
+        Get a Quote
+      </a>
+    </nav>
+
+    <a
+      class:list={[
+        "header__cta",
+        "header__cta--desktop",
+        "button",
+        "button--primary",
+        contactNavCurrent && "site-nav-link--current",
+      ]}
+      href="/#contact"
+      data-nav-href="/#contact"
+      aria-current={contactNavCurrent ? "true" : undefined}
+    >
+      Get a Quote
+    </a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("primary-nav");
+  const header = document.querySelector(".header");
+
+  function setOpen(open) {
+    toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    nav?.classList.toggle("nav--open", open);
+    header?.classList.toggle("header--menu-open", open);
+  }
+
+  toggle?.addEventListener("click", () => {
+    const open = toggle?.getAttribute("aria-expanded") === "true";
+    setOpen(!open);
+  });
+
+  nav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => setOpen(false));
+  });
+
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 760px)").matches) {
+      setOpen(false);
+    }
+  });
+
+  function updateHeaderTransparency() {
+    if (!header) return;
+    const y = window.scrollY || document.documentElement.scrollTop;
+    header.classList.toggle("header--scrolled", y > 24);
+  }
+
+  window.addEventListener("scroll", updateHeaderTransparency, { passive: true });
+  updateHeaderTransparency();
+</script>

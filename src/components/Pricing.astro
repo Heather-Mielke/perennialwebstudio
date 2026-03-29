@@ -1,0 +1,135 @@
+---
+const websitePlans = [
+  {
+    name: "Starter",
+    price: "$1,350",
+    note: "Single-page site",
+    items: [
+      "One focused landing-style page",
+      "Best for businesses that need services, contact details, hours, and location in one place",
+      "Mobile-friendly custom layout built from shared studio components",
+      "Basic on-page search engine setup",
+      "Contact section and inquiry form setup",
+      "One round of revisions after first review",
+      "Static marketing site only",
+    ],
+  },
+  {
+    name: "Standard",
+    price: "$2,150",
+    note: "Up to 5 pages",
+    items: [
+      "Up to 5 pages such as Home, About, Services, Contact, and Location",
+      "Best for small businesses that need a fuller website with room for trust-building content",
+      "Component-based layout tailored to your business and content",
+      "Mobile-friendly design across all included pages",
+      "Basic on-page search engine setup across the site",
+      "Contact form setup and launch support",
+      "Up to two rounds of revisions after first review",
+      "Static marketing site only",
+    ],
+    featured: true,
+  },
+  {
+    name: "Expanded",
+    price: "$2,850",
+    note: "Up to 7 pages",
+    items: [
+      "Up to 7 pages for added services, FAQs, galleries, or location-specific content",
+      "Best for businesses that need more room for content while staying simple and easy to manage",
+      "Organized site structure and content layout guidance",
+      "Mobile-friendly design across all included pages",
+      "Basic analytics setup",
+      "Basic on-page search engine setup across the site",
+      "Up to two rounds of revisions after first review",
+      "Static marketing site only",
+    ],
+  },
+];
+
+const carePlans = [
+  {
+    name: "Care Plan",
+    price: "$95/month",
+    note: "Light ongoing support",
+    items: [
+      "Up to 30 minutes of small text or image updates each month",
+      "Minor content edits on existing pages only",
+      "Basic site monitoring",
+      "Email support",
+      "Unused time does not roll over",
+      "New pages, redesigns, and larger changes are quoted separately",
+    ],
+  },
+  {
+    name: "Care Plan Plus",
+    price: "$165/month",
+    note: "Priority support",
+    items: [
+      "Up to 60 minutes of updates each month",
+      "Priority email support",
+      "Minor text, image, and layout adjustments on existing pages",
+      "Basic site monitoring",
+      "Monthly check-in available if needed",
+      "Unused time does not roll over",
+      "New pages, redesigns, and larger changes are quoted separately",
+    ],
+    featured: true,
+  },
+];
+---
+
+<section id="pricing" class="section section--pricing">
+  <div class="section__head">
+    <p class="section__eyebrow">Investment</p>
+    <h2>Pricing</h2>
+    <p>
+      Straightforward pricing for static marketing and informational websites. These builds are designed for businesses
+      that need a clean online presence with services, contact details, hours, location information, and clear next
+      steps. Perennial Web Studio does not offer e-commerce, customer logins, member areas, checkout systems, portals,
+      or custom web applications.
+    </p>
+  </div>
+
+  <h3 class="subhead">Website builds (one-time)</h3>
+  <div class="pricing">
+    {websitePlans.map((p) => (
+      <article class={`price-card ${p.featured ? "price-card--featured" : ""}`}>
+        <h4>{p.name}</h4>
+        <p class="price">{p.price}</p>
+        <p class="note">{p.note}</p>
+        <ul>
+          {p.items.map((i) => (
+            <li>{i}</li>
+          ))}
+        </ul>
+        <a class="button button--primary" href="#contact">Get started</a>
+      </article>
+    ))}
+  </div>
+
+  <h3 class="subhead">Care plans (monthly)</h3>
+  <div class="pricing pricing--two">
+    {carePlans.map((p) => (
+      <article class={`price-card ${p.featured ? "price-card--featured" : ""}`}>
+        <h4>{p.name}</h4>
+        <p class="price">{p.price}</p>
+        <p class="note">{p.note}</p>
+        <ul>
+          {p.items.map((i) => (
+            <li>{i}</li>
+          ))}
+        </ul>
+        <a class="button button--secondary" href="#contact">Add a care plan</a>
+      </article>
+    ))}
+  </div>
+
+  <p class="smallprint">
+    Domain, hosting, third-party subscription costs, copywriting, branding, logo design, and stock photography are not
+    included unless specifically listed in your quote. Care plans cover small ongoing updates to existing pages only.
+    If a business needs online ordering, secure checkout, memberships, customer accounts, bookings handled through a
+    separate platform, or other advanced functionality, outside services can be linked from the site when appropriate,
+    but custom system setup and application-style features are not included.
+  </p>
+</section>

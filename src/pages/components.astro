@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ComponentDemos from "../components/library/ComponentDemos.astro";
+---
+<BaseLayout title="Components — Perennial Web Studio" bodyClass="site-body--inner">
+  <div class="page-inner">
+    <header class="page-head">
+      <p class="section__eyebrow">Components</p>
+      <h1>Components</h1>
+      <p class="page-head__lede">
+        Headers, heroes, templates, and content patterns you can mix on a live site. Swap placeholders for real copy and
+        shots as projects ship.
+      </p>
+    </header>
+  </div>
+
+  <div class="library-surface">
+    <ComponentDemos />
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll("[data-lib-carousel]").forEach((root) => {
+    const track = root.querySelector(".lib-carousel__track");
+    const slides = root.querySelectorAll(".lib-carousel__slide");
+    const dots = root.querySelectorAll("[data-lib-carousel-dot]");
+    const prev = root.querySelector("[data-lib-carousel-prev]");
+    const next = root.querySelector("[data-lib-carousel-next]");
+
+    if (!track || !slides.length || !prev || !next) return;
+
+    let index = 0;
+
+    function go(n) {
+      index = ((n % slides.length) + slides.length) % slides.length;
+      track.style.transform = `translateX(-${index * 100}%)`;
+
+      slides.forEach((slide, i) => {
+        slide.setAttribute("aria-hidden", String(i !== index));
+      });
+
+      dots.forEach((dot, i) => {
+        const isActive = i === index;
+        dot.setAttribute("aria-current", String(isActive));
+        dot.classList.toggle("bg-zinc-900/80", isActive);
+        dot.classList.toggle("bg-zinc-200", !isActive);
+      });
+    }
+
+    slides.forEach((slide, i) => {
+      slide.setAttribute("aria-hidden", String(i !== 0));
+    });
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const dotIndex = Number(dot.getAttribute("data-index"));
+        go(dotIndex);
+      });
+    });
+
+    prev.addEventListener("click", () => go(index - 1));
+    next.addEventListener("click", () => go(index + 1));
+
+    go(0);
+  });
+</script>

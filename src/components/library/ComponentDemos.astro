@@ -1,0 +1,480 @@
+---
+import Templates from "../Templates.astro";
+---
+
+<section class="lib-chapter" aria-labelledby="lib-usage">
+  <h2 id="lib-usage" class="lib-chapter__title">How to use this page</h2>
+  <p class="lib-chapter__intro">
+    This library shows reusable sections and layout patterns for client sites. Treat each block as a starting point:
+    swap in brand colors, adjust radius and typography, and replace placeholders with real copy and photography.
+  </p>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">Pick a structure</h3>
+      <p class="mt-2 text-sm leading-6 text-zinc-700">
+        Choose a header, hero, content flow, and footer that match the business goal.
+      </p>
+    </div>
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">Apply a style system</h3>
+      <p class="mt-2 text-sm leading-6 text-zinc-700">
+        Use the same blocks with different radius, type, color, and button treatments.
+      </p>
+    </div>
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <h3 class="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-500">Swap in real assets</h3>
+      <p class="mt-2 text-sm leading-6 text-zinc-700">
+        Replace placeholders with photography, testimonials, hours, offers, and contact information.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="lib-chapter" aria-labelledby="lib-style-controls">
+  <h2 id="lib-style-controls" class="lib-chapter__title">Style controls</h2>
+  <p class="lib-chapter__intro">
+    These are the knobs you can turn to make the same components feel more refined, bold, soft, or utilitarian across
+    different industries.
+  </p>
+
+  <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Radius</p>
+      <div class="mt-4 flex items-center gap-3">
+        <span class="h-10 w-10 rounded-none border border-zinc-300 bg-zinc-100"></span>
+        <span class="h-10 w-10 rounded-xl border border-zinc-300 bg-zinc-100"></span>
+        <span class="h-10 w-10 rounded-full border border-zinc-300 bg-zinc-100"></span>
+      </div>
+      <p class="mt-3 text-sm text-zinc-700">Sharp, balanced, or soft.</p>
+    </div>
+
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Buttons</p>
+      <div class="mt-4 flex flex-wrap gap-2">
+        <span class="rounded-full bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-white">Solid</span>
+        <span class="rounded-full border border-zinc-300 px-3 py-1.5 text-xs font-semibold text-zinc-800">Outline</span>
+        <span class="px-1 py-1.5 text-xs font-semibold text-zinc-700 underline decoration-zinc-300 underline-offset-4">Text</span>
+      </div>
+      <p class="mt-3 text-sm text-zinc-700">Primary action, secondary action, or subtle link.</p>
+    </div>
+
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Typography</p>
+      <div class="mt-4 space-y-2">
+        <p class="font-serif text-lg text-zinc-900">Elegant serif</p>
+        <p class="text-lg font-semibold text-zinc-900">Clean sans</p>
+        <p class="text-lg font-black uppercase tracking-wide text-zinc-900">Bold display</p>
+      </div>
+      <p class="mt-3 text-sm text-zinc-700">A major driver of industry feel.</p>
+    </div>
+
+    <div class="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <p class="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500">Color direction</p>
+      <div class="mt-4 flex gap-2">
+        <span class="h-8 w-8 rounded-full bg-stone-300"></span>
+        <span class="h-8 w-8 rounded-full bg-emerald-700"></span>
+        <span class="h-8 w-8 rounded-full bg-amber-600"></span>
+        <span class="h-8 w-8 rounded-full bg-rose-300"></span>
+      </div>
+      <p class="mt-3 text-sm text-zinc-700">Neutral, organic, warm, or soft.</p>
+    </div>
+  </div>
+</section>
+
+<section class="lib-chapter" aria-labelledby="lib-headers">
+  <h2 id="lib-headers" class="lib-chapter__title">Header layouts</h2>
+  <p class="lib-chapter__intro">
+    Logo left with links or CTA is the default; many sites also use a centered logo, a split bar, or a centered menu row
+    between logo and action.
+  </p>
+
+  <div class="space-y-4">
+    <div class="lib-frame">
+      <p class="lib-frame__label">Example A — logo and links</p>
+      <div class="rounded-2xl border border-zinc-200 bg-white px-5 py-4 shadow-sm">
+        <div class="flex items-center justify-between gap-4">
+          <div class="h-9 w-28 rounded-lg bg-zinc-900/90"></div>
+          <div class="hidden gap-2 sm:flex">
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Example B — nav + highlighted CTA</p>
+      <div class="rounded-2xl border border-zinc-200 bg-white px-5 py-4 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-4">
+          <div class="h-9 w-28 rounded-lg bg-zinc-900/90"></div>
+          <div class="hidden gap-2 md:flex">
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+          </div>
+          <span class="rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white">Get a quote</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Example C — logo centered, links below</p>
+      <div class="rounded-2xl border border-zinc-200 bg-white px-5 py-5 shadow-sm">
+        <div class="flex flex-col items-center gap-4">
+          <div class="h-9 w-28 rounded-lg bg-zinc-900/90"></div>
+          <div class="flex flex-wrap justify-center gap-2">
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Example D — split bar: nav · logo · nav + CTA</p>
+      <div class="rounded-2xl border border-zinc-200 bg-white px-5 py-4 shadow-sm">
+        <div class="grid items-center gap-4 md:grid-cols-[1fr_auto_1fr]">
+          <div class="hidden items-center gap-2 md:flex">
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+          </div>
+          <div class="mx-auto h-9 w-28 rounded-lg bg-zinc-900/90"></div>
+          <div class="flex items-center justify-end gap-2">
+            <span class="hidden h-8 w-16 rounded-full bg-zinc-100 sm:block"></span>
+            <span class="rounded-full border border-zinc-300 px-3 py-1.5 text-sm font-semibold text-zinc-800">Book</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Example E — logo left, centered menu, CTA right</p>
+      <div class="rounded-2xl border border-zinc-200 bg-white px-5 py-4 shadow-sm">
+        <div class="grid items-center gap-4 lg:grid-cols-[auto_1fr_auto]">
+          <div class="h-9 w-28 rounded-lg bg-zinc-900/90"></div>
+          <div class="hidden justify-center gap-2 lg:flex">
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+            <span class="h-8 w-16 rounded-full bg-zinc-100"></span>
+          </div>
+          <span class="justify-self-start rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white lg:justify-self-end">
+            Contact
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="lib-chapter" aria-labelledby="lib-heroes">
+  <h2 id="lib-heroes" class="lib-chapter__title">Hero layouts</h2>
+  <p class="lib-chapter__intro">
+    Same content can be arranged as a single column, split text + media, or a compact band for inner pages.
+  </p>
+
+  <div class="space-y-4">
+    <div class="lib-frame">
+      <p class="lib-frame__label">Stacked — headline, text, buttons</p>
+      <div class="rounded-3xl border border-zinc-200 bg-white px-6 py-8 shadow-sm md:px-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-zinc-500">Eyebrow</p>
+        <h3 class="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">Main headline</h3>
+        <p class="mt-4 max-w-xl text-sm leading-7 text-zinc-600 md:text-base">
+          Supporting copy that explains the offer in one or two short lines.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <span class="rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white">Primary</span>
+          <span class="rounded-full border border-zinc-300 px-4 py-2 text-sm font-semibold text-zinc-800">Secondary</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Split — copy on the left, visual on the right</p>
+      <div class="grid gap-6 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:grid-cols-2 md:p-8">
+        <div class="flex flex-col justify-center">
+          <p class="text-xs font-semibold uppercase tracking-[0.24em] text-zinc-500">Eyebrow</p>
+          <h3 class="mt-3 text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">Headline + art</h3>
+          <p class="mt-4 max-w-md text-sm leading-7 text-zinc-600 md:text-base">
+            Room for a short paragraph beside a photo, illustration, or device mock.
+          </p>
+        </div>
+        <div class="min-h-56 rounded-[2rem] bg-gradient-to-br from-zinc-100 via-zinc-50 to-zinc-200 ring-1 ring-zinc-950/5"></div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Compact — inner page intro</p>
+      <div class="rounded-3xl border border-zinc-200 bg-white px-6 py-8 shadow-sm md:px-8">
+        <h3 class="text-2xl font-semibold tracking-tight text-zinc-950 md:text-3xl">Page title</h3>
+        <p class="mt-3 max-w-2xl text-sm leading-7 text-zinc-600 md:text-base">
+          One line of context—enough to orient visitors without repeating the whole story.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lib-block lib-block--templates">
+  <Templates />
+</div>
+
+<div class="lib-block lib-block--content-patterns">
+  <section class="lib-chapter lib-chapter--lead" aria-labelledby="lib-text">
+    <h2 id="lib-text" class="lib-chapter__title">Text sections</h2>
+    <p class="lib-chapter__intro">Testimonials, about blurbs, and service callouts reuse the same typography rhythm.</p>
+
+    <div class="space-y-4">
+      <div class="lib-frame">
+        <p class="lib-frame__label">Testimonial</p>
+        <blockquote class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm md:p-8">
+          <p class="max-w-3xl text-lg leading-8 text-zinc-900 md:text-xl">
+            “We finally have a link we’re proud to put on the van and in our email signature. Booking calls picked up the
+            first month.”
+          </p>
+          <footer class="mt-4 text-sm font-medium text-zinc-500">— Placeholder client, trade or city</footer>
+        </blockquote>
+      </div>
+
+      <div class="lib-frame">
+        <p class="lib-frame__label">About snippet</p>
+        <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-950">Local, approachable, specific</h3>
+          <p class="mt-3 max-w-2xl text-sm leading-7 text-zinc-600 md:text-base">
+            A short about block might cover years in business, service area, and what makes your crew different—without
+            sounding like a novel.
+          </p>
+        </div>
+      </div>
+
+      <div class="lib-frame">
+        <p class="lib-frame__label">Service highlight</p>
+        <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h3 class="text-xl font-semibold tracking-tight text-zinc-950">Seasonal tune-ups</h3>
+          <p class="mt-3 max-w-2xl text-sm leading-7 text-zinc-600 md:text-base">
+            One tight paragraph on a single offer: who it’s for, what’s included, and what the customer should do next.
+          </p>
+          <a class="mt-4 inline-flex text-sm font-semibold text-zinc-900 underline decoration-zinc-300 underline-offset-4" href="/#contact">
+            Request this service →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lib-chapter" aria-labelledby="lib-cards">
+  <h2 id="lib-cards" class="lib-chapter__title">Card grid</h2>
+  <p class="lib-chapter__intro">Great for services, team members, packages, or FAQs in digestible tiles.</p>
+
+  <div class="lib-frame lib-frame--flush">
+    <ul class="m-0 grid list-none gap-4 p-0 md:grid-cols-3">
+      <li class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg font-semibold text-zinc-950">Card one</h3>
+        <p class="mt-2 text-sm leading-7 text-zinc-600">Title, short body, optional link or price.</p>
+      </li>
+      <li class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg font-semibold text-zinc-950">Card two</h3>
+        <p class="mt-2 text-sm leading-7 text-zinc-600">Same structure keeps the grid easy to scan.</p>
+      </li>
+      <li class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <h3 class="text-lg font-semibold text-zinc-950">Card three</h3>
+        <p class="mt-2 text-sm leading-7 text-zinc-600">On small screens these stack; on wide screens they sit in a row.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+  <section class="lib-chapter" aria-labelledby="lib-images">
+    <h2 id="lib-images" class="lib-chapter__title">Image grids</h2>
+    <p class="lib-chapter__intro">
+      Inline rows read as a single band—good for client logos or a tight gallery strip. Staggered grids nudge rhythm;
+      collages use a single square frame, even gutters, and a bento-style grid—mixed spans, flush edges, no overlap.
+    </p>
+
+    <div class="space-y-4">
+      <div class="lib-frame">
+        <p class="lib-frame__label">Inline row</p>
+        <div class="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <span class="aspect-[4/3] rounded-2xl bg-zinc-200"></span>
+          <span class="aspect-[4/3] rounded-2xl bg-zinc-100"></span>
+          <span class="aspect-[4/3] rounded-2xl bg-zinc-200"></span>
+          <span class="aspect-[4/3] rounded-2xl bg-zinc-100"></span>
+        </div>
+      </div>
+
+      <div class="lib-frame">
+        <p class="lib-frame__label">Staggered grid</p>
+        <div class="grid grid-cols-2 gap-3 md:grid-cols-3">
+          <span class="aspect-[4/5] rounded-2xl bg-zinc-200"></span>
+          <span class="aspect-square rounded-2xl bg-zinc-100"></span>
+          <span class="aspect-[4/5] rounded-2xl bg-zinc-200"></span>
+          <span class="aspect-square rounded-2xl bg-zinc-100"></span>
+          <span class="aspect-[4/5] rounded-2xl bg-zinc-200"></span>
+          <span class="aspect-square rounded-2xl bg-zinc-100"></span>
+        </div>
+      </div>
+
+      <div class="lib-frame lib-frame--bento">
+        <p class="lib-frame__label">Collage</p>
+        <div class="grid auto-rows-[7rem] grid-cols-2 gap-3 md:grid-cols-4">
+          <span class="col-span-2 row-span-2 rounded-2xl bg-zinc-200"></span>
+          <span class="rounded-2xl bg-zinc-100"></span>
+          <span class="rounded-2xl bg-zinc-100"></span>
+          <span class="rounded-2xl bg-zinc-100"></span>
+          <span class="col-span-2 rounded-2xl bg-zinc-200"></span>
+          <span class="rounded-2xl bg-zinc-100"></span>
+          <span class="rounded-2xl bg-zinc-100"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="lib-chapter" aria-labelledby="lib-forms">
+  <h2 id="lib-forms" class="lib-chapter__title">Form styles</h2>
+  <p class="lib-chapter__intro">
+    Useful for quote forms, booking requests, and general contact. This is also a good place to show your preferred
+    floating-label style.
+  </p>
+
+  <div class="grid gap-4 lg:grid-cols-2">
+    <div class="lib-frame">
+      <p class="lib-frame__label">Floating labels</p>
+      <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <div class="space-y-4">
+          <div class="relative">
+            <input
+              id="lib-float-name"
+              type="text"
+              placeholder=" "
+              class="peer w-full rounded-2xl border border-zinc-300 bg-white px-4 pb-2.5 pt-4 text-sm text-zinc-900 outline-none transition focus:border-zinc-900"
+            />
+            <label
+              for="lib-float-name"
+              class="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white px-1 text-sm font-normal leading-none text-zinc-500 transition-all duration-200
+              peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm
+              peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:font-medium peer-focus:uppercase peer-focus:tracking-[0.16em] peer-focus:text-zinc-900
+              peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-medium peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.16em] peer-[:not(:placeholder-shown)]:text-zinc-900"
+            >
+              Name
+            </label>
+          </div>
+
+          <div class="relative">
+            <input
+              id="lib-float-email"
+              type="email"
+              placeholder=" "
+              class="peer w-full rounded-2xl border border-zinc-300 bg-white px-4 pb-2.5 pt-4 text-sm text-zinc-900 outline-none transition focus:border-zinc-900"
+            />
+            <label
+              for="lib-float-email"
+              class="pointer-events-none absolute left-4 top-1/2 z-10 -translate-y-1/2 bg-white px-1 text-sm font-normal leading-none text-zinc-500 transition-all duration-200
+              peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:text-sm
+              peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:font-medium peer-focus:uppercase peer-focus:tracking-[0.16em] peer-focus:text-zinc-900
+              peer-[:not(:placeholder-shown)]:top-0 peer-[:not(:placeholder-shown)]:-translate-y-1/2 peer-[:not(:placeholder-shown)]:text-xs peer-[:not(:placeholder-shown)]:font-medium peer-[:not(:placeholder-shown)]:uppercase peer-[:not(:placeholder-shown)]:tracking-[0.16em] peer-[:not(:placeholder-shown)]:text-zinc-900"
+            >
+              Email
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lib-frame">
+      <p class="lib-frame__label">Simple stacked form</p>
+      <div class="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+        <div class="space-y-4">
+          <div>
+            <label class="mb-2 block text-sm font-medium text-zinc-700">Project type</label>
+            <select class="w-full rounded-2xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 outline-none focus:border-zinc-900">
+              <option>Restaurant</option>
+              <option>Salon</option>
+              <option>Construction</option>
+            </select>
+          </div>
+          <div>
+            <label class="mb-2 block text-sm font-medium text-zinc-700">Details</label>
+            <textarea class="min-h-32 w-full rounded-2xl border border-zinc-300 bg-white px-4 py-3 text-sm text-zinc-900 outline-none focus:border-zinc-900"></textarea>
+          </div>
+          <button type="button" class="rounded-full bg-zinc-900 px-4 py-2 text-sm font-semibold text-white">Send inquiry</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="lib-chapter" aria-labelledby="lib-carousel">
+  <h2 id="lib-carousel" class="lib-chapter__title">Carousel</h2>
+  <p class="lib-chapter__intro">
+    For rotating testimonials, project photos, or short blurbs—keyboard-accessible prev/next controls.
+  </p>
+
+  <div class="lib-frame lib-frame--flush">
+    <div class="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm" data-lib-carousel>
+      <div class="overflow-hidden">
+        <ul class="lib-carousel__track flex m-0 list-none p-0 transition-transform duration-300 ease-out">
+          <li class="lib-carousel__slide w-full shrink-0 p-8" id="lib-slide-0">
+            <p class="text-lg leading-8 text-zinc-900">“First slide—quote, caption, or announcement.”</p>
+          </li>
+          <li class="lib-carousel__slide w-full shrink-0 p-8" id="lib-slide-1">
+            <p class="text-lg leading-8 text-zinc-900">“Second slide—another voice or project detail.”</p>
+          </li>
+          <li class="lib-carousel__slide w-full shrink-0 p-8" id="lib-slide-2">
+            <p class="text-lg leading-8 text-zinc-900">“Third slide—seasonal promo or new service.”</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="flex items-center justify-between border-t border-zinc-200 px-5 py-4">
+        <div class="flex items-center gap-2" role="tablist" aria-label="Carousel slides">
+          <button
+            type="button"
+            class="lib-carousel__dot bg-zinc-900/80 transition-colors"
+            data-lib-carousel-dot
+            data-index="0"
+            aria-label="Go to slide 1"
+            aria-current="true"
+          ></button>
+          <button
+            type="button"
+            class="lib-carousel__dot bg-zinc-200 transition-colors"
+            data-lib-carousel-dot
+            data-index="1"
+            aria-label="Go to slide 2"
+            aria-current="false"
+          ></button>
+          <button
+            type="button"
+            class="lib-carousel__dot bg-zinc-200 transition-colors"
+            data-lib-carousel-dot
+            data-index="2"
+            aria-label="Go to slide 3"
+            aria-current="false"
+          ></button>
+        </div>
+
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="rounded-full border border-zinc-300 px-3 py-1.5 text-sm font-semibold text-zinc-800 hover:bg-zinc-50"
+            data-lib-carousel-prev
+            aria-controls="lib-slide-0"
+          >
+            Previous
+          </button>
+          <button
+            type="button"
+            class="rounded-full bg-zinc-900 px-3 py-1.5 text-sm font-semibold text-white hover:bg-zinc-800"
+            data-lib-carousel-next
+            aria-controls="lib-slide-0"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>

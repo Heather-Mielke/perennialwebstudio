@@ -1,0 +1,47 @@
+---
+const examples = [
+  {
+    title: "Services-first",
+    desc: "Lead with what you offer. Strong when visitors already know they need your trade and want scope and proof up front.",
+    layout: "services-first",
+  },
+  {
+    title: "Story-led",
+    desc: "About and credibility before the detail. Works well when trust and personality close the sale.",
+    layout: "story-led",
+  },
+  {
+    title: "Contact-forward",
+    desc: "Phone, form, and map up high. Ideal when most people land on the site ready to call or book.",
+    layout: "contact-forward",
+  },
+];
+---
+<section id="templates" class="section section--templates">
+  <div class="section__head">
+    <p class="section__eyebrow">Layouts</p>
+    <h2>Templates & layout</h2>
+    <p>
+      Three starter flows—same building blocks, different order and emphasis. Replace the wireframe blocks with real
+      screenshots when you are ready.
+    </p>
+  </div>
+
+  <div class="templates__grid">
+    {examples.map((ex) => (
+      <article class="template-card">
+        <div
+          class={`template-card__mock template-card__mock--${ex.layout}`}
+          aria-hidden="true"
+        >
+          <span class="template-card__block template-card__block--a" />
+          <span class="template-card__block template-card__block--b" />
+          <span class="template-card__block template-card__block--c" />
+          <span class="template-card__block template-card__block--d" />
+        </div>
+        <h3>{ex.title}</h3>
+        <p>{ex.desc}</p>
+      </article>
+    ))}
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+const steps = [
+  {
+    title: "Quick call",
+    desc: "We talk through your business, what should be on the site, and how visitors should move through the page. No jargon required.",
+  },
+  {
+    title: "Build & review",
+    desc: "I assemble your site from shared components, you review, and we adjust placement and copy until it feels right.",
+  },
+  {
+    title: "Launch",
+    desc: "When you’re happy, the site goes live—fast, mobile-friendly, and easy for you to reference with customers.",
+  },
+  {
+    title: "Ongoing support (optional)",
+    desc: "Care plans are there if you want a hand with small updates after launch, so you can stay focused on your work.",
+  },
+];
+---
+<section class="section section--alt section--process">
+  <div class="section__head">
+    <p class="section__eyebrow">The process</p>
+    <h2>How it works</h2>
+    <p>One person from hello to launch—simple milestones and clear expectations.</p>
+  </div>
+
+  <ol class="steps">
+    {steps.map((step) => (
+      <li class="step">
+        <h3>{step.title}</h3>
+        <p>{step.desc}</p>
+      </li>
+    ))}
+  </ol>
+</section>

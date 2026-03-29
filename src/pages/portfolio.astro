@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+/** Replace with real client sites: label, url, optional blurb */
+const projects: { title: string; url: string; note?: string }[] = [
+  {
+    title: "Example client one",
+    url: "https://example.com",
+    note: "Short description of what you built or the industry.",
+  },
+  {
+    title: "Example client two",
+    url: "https://example.com",
+    note: "Swap these rows for real launches when you’re ready.",
+  },
+];
+---
+<BaseLayout title="Portfolio — Perennial Web Studio" bodyClass="site-body--inner">
+  <div class="page-inner">
+    <header class="page-head">
+      <p class="section__eyebrow">Portfolio</p>
+      <h1>Portfolio</h1>
+      <p class="page-head__lede">
+        Live sites you can open in a new tab. Replace the placeholders below with real projects as you ship them.
+      </p>
+    </header>
+
+    <ul class="work-list">
+      {projects.map((p) => (
+        <li class="work-card">
+          <a class="work-card__link" href={p.url} target="_blank" rel="noopener noreferrer">
+            <span class="work-card__title">{p.title}</span>
+            <span class="work-card__url">{p.url.replace(/^https?:\/\//, "")}</span>
+          </a>
+          {p.note && <p class="work-card__note">{p.note}</p>}
+        </li>
+      ))}
+    </ul>
+
+    <p class="work-footnote muted">
+      Prefer not to list a URL publicly? We can use screenshots or a short case-style writeup instead—say the word when
+      you add a project.
+    </p>
+  </div>
+</BaseLayout>

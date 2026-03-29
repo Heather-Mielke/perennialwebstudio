@@ -1,0 +1,100 @@
+/** Path/hash matching for header + footer nav (SSR + client). */
+
+export function normalizePathname(p: string): string {
+  let path = p;
+  if (!path || path === "/") return "/";
+  if (path.endsWith("/") && path.length > 1) path = path.slice(0, -1);
+  return path || "/";
+}
+
+export function parseNavHref(href: string): { path: string; hash: string | null } {
+  const i = href.indexOf("#");
+  if (i === -1) {
+    return { path: normalizePathname(href || "/"), hash: null };
+  }
+  const pathPart = href.slice(0, i) || "/";
+  return { path: normalizePathname(pathPart), hash: href.slice(i) };
+}
+
+export function isNavLinkCurrent(
+  href: string,
+  ctx: { pathname: string; hash: string; homeSectionId: string | null },
+): boolean {
+  const { path, hash } = parseNavHref(href);
+  const pn = normalizePathname(ctx.pathname);
+
+  if (hash) {
+    if (path !== "/" || pn !== "/") return false;
+    if (ctx.hash) {
+      return ctx.hash.toLowerCase() === hash.toLowerCase();
+    }
+    if (ctx.homeSectionId) {
+      return hash === `#${ctx.homeSectionId}`;
+    }
+    return false;
+  }
+
+  return pn === path;
+}
+
+/** Which home section is “current” by scroll (no hash in URL). */
+export function getHomeActiveSectionId(): string | null {
+  if (typeof window === "undefined") return null;
+  if (normalizePathname(window.location.pathname) !== "/") return null;
+
+  const ids = ["services", "pricing", "contact"];
+  const triggerLine = 108;
+  let current: string | null = null;
+  for (const id of ids) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (el.getBoundingClientRect().top <= triggerLine) current = id;
+  }
+  return current;
+}
+
+function setLinkCurrent(link: HTMLAnchorElement, current: boolean): void {
+  const href = link.getAttribute("data-nav-href") || link.getAttribute("href") || "";
+  const { hash } = parseNavHref(href);
+
+  link.classList.toggle("site-nav-link--current", current);
+
+  if (!current) {
+    link.removeAttribute("aria-current");
+    return;
+  }
+  link.setAttribute("aria-current", hash ? "true" : "page");
+}
+
+export function updateNavCurrentStates(): void {
+  const pathname = window.location.pathname;
+  const hash = window.location.hash || "";
+  const homeSectionId = hash ? null : getHomeActiveSectionId();
+  const ctx = { pathname, hash, homeSectionId };
+
+  document.querySelectorAll<HTMLAnchorElement>("a[data-nav-href]").forEach((link) => {
+    const href = link.getAttribute("data-nav-href") || "";
+    setLinkCurrent(link, isNavLinkCurrent(href, ctx));
+  });
+}
+
+let scrollPending = false;
+
+export function initNavCurrent(): void {
+  updateNavCurrentStates();
+
+  window.addEventListener("hashchange", updateNavCurrentStates);
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (scrollPending) return;
+      scrollPending = true;
+      requestAnimationFrame(() => {
+        scrollPending = false;
+        if (!window.location.hash) updateNavCurrentStates();
+      });
+    },
+    { passive: true },
+  );
+}

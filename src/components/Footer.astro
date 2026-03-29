@@ -1,0 +1,88 @@
+---
+import LogoMark from "./LogoMark.astro";
+import { footerNav } from "../data/nav.ts";
+import { isNavLinkCurrent } from "../lib/navCurrent";
+
+const navCtx = {
+  pathname: Astro.url.pathname,
+  hash: Astro.url.hash || "",
+  homeSectionId: null as string | null,
+};
+
+const year = new Date().getFullYear();
+
+const contactRows = [
+  {
+    label: "Email",
+    value: "hello@perennialwebstudio.com",
+    href: "mailto:hello@perennialwebstudio.com",
+  },
+  {
+    label: "Location",
+    value: "Minnesota, USA — remote projects welcome nationwide",
+  },
+  {
+    label: "Response time",
+    value: "Usually within one business day",
+    muted: true,
+  },
+];
+---
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__head">
+      <a class="footer__brand" href="/" aria-label="Perennial Web Studio home">
+        <LogoMark />
+      </a>
+      <nav class="footer__nav" aria-label="Footer">
+        {footerNav.map((item) => {
+          const current = isNavLinkCurrent(item.href, navCtx);
+          return (
+            <a
+              class:list={["footer__link", current && "site-nav-link--current"]}
+              href={item.href}
+              data-nav-href={item.href}
+              aria-current={current ? (item.href.includes("#") ? "true" : "page") : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </nav>
+    </div>
+
+    <div class="footer__body">
+      <p class="footer__tagline">
+        Brochure and landing-page websites for small businesses—clear messaging, fast loads, easy to maintain.
+      </p>
+      <address class="footer__contact">
+        <dl class="footer__meta">
+          {contactRows.map((row) => (
+            <div
+              class:list={[
+                "footer__meta-row",
+                row.muted && "footer__meta-row--muted",
+              ]}
+            >
+              <dt class="footer__label">{row.label}</dt>
+              <dd class="footer__value">
+                {row.href ? (
+                  <a class="footer__contact-link" href={row.href}>
+                    {row.value}
+                  </a>
+                ) : (
+                  row.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </address>
+    </div>
+
+    <p class="footer__copy">
+      © {year} Perennial Web Studio. Marketing sites and simple multi-page builds—no logins, storefronts, or custom app
+      development.
+    </p>
+  </div>
+</footer>
