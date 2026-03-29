@@ -14,4 +14,5 @@ export const footerNav = [
   { label: "Care Plans", href: "/#care-plans" },
   { label: "Contact", href: "/#contact" },
   { label: "Examples", href: "/components" },
+  { label: "Privacy Policy", href: "/privacy" },
 ] as const;
