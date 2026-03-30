@@ -406,7 +406,7 @@ body {
   background-color: var(--cream-warm);
   background-image: none;
   color: var(--charcoal);
-  min-height: 90svh;
+  min-height: 75svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -610,7 +610,7 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 
 @media (max-width: 879px) {
   .hero.full-bleed {
-    min-height: 90svh;
+    min-height: 75svh;
   }
 
   .hero.full-bleed .hero__inner {
@@ -649,7 +649,7 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 
 @media (min-width: 880px) {
   .hero.full-bleed {
-    min-height: 90svh;
+    min-height: 75svh;
     padding: clamp(4rem, 9vw, 6rem) 0 clamp(3.75rem, 8vw, 5.5rem);
   }
 
