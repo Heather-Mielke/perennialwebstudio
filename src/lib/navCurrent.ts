@@ -22,11 +22,25 @@ export function isNavLinkCurrent(
 ): boolean {
   const { path, hash } = parseNavHref(href);
   const pn = normalizePathname(ctx.pathname);
+  const onHome = pn === "/";
 
   if (hash) {
-    if (path !== "/" || pn !== "/") return false;
+    if (path !== "/" || !onHome) return false;
     const hf = hash.toLowerCase();
     const pricingScrollIds = ["pricing", "compare"];
+    const hs = (ctx.homeSectionId || "").toLowerCase();
+
+    // On the homepage, follow the section currently in view (scroll spy),
+    // rather than locking to the last clicked hash in the URL.
+    if (hs) {
+      if (hf === "#pricing") return pricingScrollIds.includes(hs);
+      return hf === `#${hs}`;
+    }
+
+    // Hero / top of home: no active section hashes.
+    return false;
+
+    /* Legacy hash-based matching (kept unreachable intentionally)
     if (hf === "#pricing") {
       const ch = ctx.hash.toLowerCase();
       if (ctx.hash && (ch === "#pricing" || ch === "#compare")) return true;
@@ -43,12 +57,12 @@ export function isNavLinkCurrent(
       return hash === `#${ctx.homeSectionId}`;
     }
     return false;
+    */
   }
 
   /** Home: active on `/` only when no hash and not scrolled into a home section (hero / top). */
   if (!hash && path === "/") {
-    if (pn !== "/") return false;
-    if (ctx.hash) return false;
+    if (!onHome) return false;
     if (ctx.homeSectionId) return false;
     return true;
   }
@@ -85,10 +99,41 @@ function setLinkCurrent(link: HTMLAnchorElement, current: boolean): void {
   link.setAttribute("aria-current", hash ? "true" : "page");
 }
 
+let pendingTargetId: string | null = null;
+let pendingTargetUntil = 0;
+
+function getPendingTargetFromHref(href: string): string | null {
+  const { path, hash } = parseNavHref(href);
+  if (path !== "/" || !hash) return null;
+  const id = hash.slice(1).trim().toLowerCase();
+  return id || null;
+}
+
+function isPendingTargetReached(targetId: string): boolean {
+  const el = document.getElementById(targetId);
+  if (!el) return true;
+  return el.getBoundingClientRect().top <= 108;
+}
+
 export function updateNavCurrentStates(): void {
   const pathname = window.location.pathname;
   const hash = window.location.hash || "";
-  const homeSectionId = hash ? null : getHomeActiveSectionId();
+  let homeSectionId = getHomeActiveSectionId();
+
+  if (normalizePathname(pathname) === "/" && pendingTargetId) {
+    const expired = Date.now() > pendingTargetUntil;
+    const reached = isPendingTargetReached(pendingTargetId);
+    if (expired || reached) {
+      pendingTargetId = null;
+      pendingTargetUntil = 0;
+    } else {
+      homeSectionId = pendingTargetId;
+    }
+  } else if (pendingTargetId) {
+    pendingTargetId = null;
+    pendingTargetUntil = 0;
+  }
+
   const ctx = { pathname, hash, homeSectionId };
 
   document.querySelectorAll<HTMLAnchorElement>("a[data-nav-href]").forEach((link) => {
@@ -102,6 +147,18 @@ let scrollPending = false;
 export function initNavCurrent(): void {
   updateNavCurrentStates();
 
+  document.querySelectorAll<HTMLAnchorElement>("a[data-nav-href]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const href = link.getAttribute("data-nav-href") || link.getAttribute("href") || "";
+      const pending = getPendingTargetFromHref(href);
+      if (!pending || normalizePathname(window.location.pathname) !== "/") return;
+      pendingTargetId = pending;
+      // Keep clicked link active while smooth-scrolling to target.
+      pendingTargetUntil = Date.now() + 2500;
+      updateNavCurrentStates();
+    });
+  });
+
   window.addEventListener("hashchange", updateNavCurrentStates);
 
   window.addEventListener(
@@ -111,7 +168,7 @@ export function initNavCurrent(): void {
       scrollPending = true;
       requestAnimationFrame(() => {
         scrollPending = false;
-        if (!window.location.hash) updateNavCurrentStates();
+        updateNavCurrentStates();
       });
     },
     { passive: true },
