@@ -143,7 +143,7 @@ body {
 /* Home mobile: panels use full main width when cards stack */
 @media (max-width: 639px) {
   .site-body--home {
-    --rounded-section-inset: 0rem;
+    --rounded-section-inset: 0.7rem;
   }
 
   .site-body--home .section--website-packages,
@@ -406,7 +406,7 @@ body {
   background-color: var(--cream-warm);
   background-image: none;
   color: var(--charcoal);
-  min-height: clamp(22rem, 62vh, 38rem);
+  min-height: 90svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -610,8 +610,7 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 
 @media (max-width: 879px) {
   .hero.full-bleed {
-    padding: clamp(2.75rem, 7vw, 3.5rem) 0 clamp(2.5rem, 6vw, 3.25rem);
-    min-height: clamp(20rem, 58vh, 34rem);
+    min-height: 90svh;
   }
 
   .hero.full-bleed .hero__inner {
@@ -630,9 +629,27 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
   }
 }
 
+@media (max-width: 639px) {
+  .hero.full-bleed {
+    padding: clamp(2.4rem, 8vw, 3.1rem) 0 clamp(4.2rem, 10vw, 4.9rem);
+  }
+
+  .hero__scroll {
+    bottom: clamp(1rem, 3.8vw, 1.5rem);
+  }
+
+  .site-body--home .section--flow .pricing,
+  .site-body--home .section--flow .pricing-compare-scroll,
+  .site-body--home #contact.section--contact .contact-layout {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
+  }
+}
+
 @media (min-width: 880px) {
   .hero.full-bleed {
-    min-height: clamp(26rem, 72vh, 46rem);
+    min-height: 90svh;
     padding: clamp(4rem, 9vw, 6rem) 0 clamp(3.75rem, 8vw, 5.5rem);
   }
 
@@ -2589,15 +2606,15 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 /* Portfolio page */
 .portfolio-empty {
   margin: 2.25rem 0 0;
-  max-width: 36ch;
+  max-width: 58ch;
   text-align: left;
-  font-family: var(--font-display);
-  font-size: clamp(1.35rem, 3vw, 1.8rem);
-  font-weight: 600;
-  color: var(--forest);
-  letter-spacing: -0.02em;
-  line-height: 1.35;
-  opacity: 0.88;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(30, 30, 30, 0.8);
+  letter-spacing: 0;
+  line-height: 1.6;
+  opacity: 1;
 }
 
 .work-list {
