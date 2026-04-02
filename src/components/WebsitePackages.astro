@@ -3,16 +3,17 @@ import { websitePlans } from "../data/pricing.ts";
 ---
 
 <section id="pricing" class="section section--flow section--website-packages" aria-labelledby="packages-heading">
-  <div class="section__head">
-    <p class="section__eyebrow">What we offer</p>
-    <h2 id="packages-heading">Website packages</h2>
-    <p>
-      Straightforward one-time pricing for static marketing and informational sites—clear scope, no hidden platforms.
-      E-commerce, customer logins, and custom web apps are out of scope; we focus on sites you can own and maintain.
-    </p>
-  </div>
+  <div class="section--website-packages__inner">
+    <div class="section__head">
+      <p class="section__eyebrow">What we offer</p>
+      <h2 id="packages-heading">Website packages</h2>
+      <p>
+        Straightforward one-time pricing for static marketing and informational sites—clear scope, no hidden platforms.
+        E-commerce, customer logins, and custom web apps are out of scope; we focus on sites you can own and maintain.
+      </p>
+    </div>
 
-  <div class="pricing">
+    <div class="pricing">
     {websitePlans.map((p) => (
       <article class={`price-card ${p.featured ? "price-card--featured" : ""}`}>
         {p.badge && <span class="price-card__badge">{p.badge}</span>}
@@ -74,5 +75,6 @@ import { websitePlans } from "../data/pricing.ts";
         </footer>
       </article>
     ))}
+    </div>
   </div>
 </section>
