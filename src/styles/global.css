@@ -2634,6 +2634,19 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
   box-shadow: 0 4px 18px rgba(var(--plum-rgb), 0.05);
 }
 
+.work-card__thumb {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(var(--plum-rgb), 0.12);
+  margin: 0 0 0.85rem;
+  box-shadow: 0 2px 14px rgba(var(--plum-rgb), 0.07);
+  object-fit: cover;
+  object-position: top center;
+}
+
 .work-card__link {
   display: flex;
   flex-direction: column;
@@ -2644,6 +2657,27 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 
 .work-card__link:hover .work-card__title {
   color: var(--magenta-primary);
+}
+
+.work-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.work-card__external {
+  flex-shrink: 0;
+  color: var(--plum-dark);
+  opacity: 0.82;
+  transition:
+    color 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.work-card__link:hover .work-card__external {
+  color: var(--magenta-primary);
+  opacity: 1;
 }
 
 .work-card__title {

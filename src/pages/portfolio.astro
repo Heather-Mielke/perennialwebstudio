@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { ExternalLink } from "@lucide/astro";
 ---
 
 <BaseLayout title="Portfolio — Perennial Web Studio" bodyClass="site-body--inner">
@@ -9,9 +10,90 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h1>Portfolio</h1>
     </header>
     <p class="portfolio-empty">
-      This portfolio features selected website projects completed for client businesses and shared here with permission.
-      Each example reflects practical, conversion-focused work tailored to real services, audiences, and day-to-day
-      business goals.
+      This portfolio features selected website projects—client work shared with permission and demo sites built to show
+      layout, content patterns, and conversion-focused structure for real-world business types.
     </p>
+
+    <h2 class="subhead">Live projects</h2>
+    <ul class="work-list">
+      <li class="work-card">
+        <a
+          class="work-card__link"
+          href="https://dough-and-co.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="work-card__thumb"
+            src="/portfolio-dough-and-co.png"
+            alt="Screenshot of the Dough &amp; Co. bakery demo website"
+            width="3448"
+            height="1764"
+            loading="eager"
+            decoding="async"
+          />
+          <span class="work-card__title-row">
+            <span class="work-card__title">Dough &amp; Co.</span>
+            <ExternalLink class="work-card__external" size={18} stroke-width={2} aria-hidden="true" />
+          </span>
+          <span class="work-card__url">dough-and-co.vercel.app</span>
+          <p class="work-card__note">
+            Demo bakery site—fresh batch story, menu highlights, and neighborhood bakery positioning.
+          </p>
+        </a>
+      </li>
+      <li class="work-card">
+        <a
+          class="work-card__link"
+          href="https://bejestransport.netlify.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="work-card__thumb"
+            src="/portfolio-bejes-transport.png"
+            alt="Screenshot of the Beje's Transport Belize shuttle website"
+            width="3448"
+            height="1778"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="work-card__title-row">
+            <span class="work-card__title">Beje's Transport Belize</span>
+            <ExternalLink class="work-card__external" size={18} stroke-width={2} aria-hidden="true" />
+          </span>
+          <span class="work-card__url">bejestransport.netlify.app</span>
+          <p class="work-card__note">
+            Shuttle transportation in Belize—services, routes, booking, and contact for locals and visitors.
+          </p>
+        </a>
+      </li>
+      <li class="work-card">
+        <a
+          class="work-card__link"
+          href="https://golden-tortilla.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img
+            class="work-card__thumb"
+            src="/portfolio-golden-tortilla.png"
+            alt="Screenshot of The Golden Tortilla taco shop demo website"
+            width="3448"
+            height="1778"
+            loading="lazy"
+            decoding="async"
+          />
+          <span class="work-card__title-row">
+            <span class="work-card__title">The Golden Tortilla</span>
+            <ExternalLink class="work-card__external" size={18} stroke-width={2} aria-hidden="true" />
+          </span>
+          <span class="work-card__url">golden-tortilla.vercel.app</span>
+          <p class="work-card__note">
+            Demo taco shop—menu favorites, story, and calls to action for ordering and directions.
+          </p>
+        </a>
+      </li>
+    </ul>
   </div>
 </BaseLayout>
