@@ -1,5 +1,8 @@
 export type WebsitePlan = {
   name: string;
+  /** Strikethrough “list” price shown before the sale price */
+  priceWas?: string;
+  /** Current (sale) price */
   price: string;
   note: string;
   /** Short intro (grey body) above the feature list */
@@ -11,6 +14,8 @@ export type WebsitePlan = {
 
 export type CarePlan = {
   name: string;
+  /** Strikethrough amount before sale, e.g. "$120" */
+  priceAmountWas?: string;
   /** Large amount only, e.g. "$95" */
   priceAmount: string;
   /** e.g. "/month" */
@@ -27,7 +32,8 @@ export type CarePlan = {
 export const websitePlans: WebsitePlan[] = [
   {
     name: "Seedling",
-    price: "$1,250",
+    priceWas: "$1,500",
+    price: "$999",
     note: "Perfect for getting started",
     description:
       "A clean, single-page website to establish your online presence. Ideal for new businesses, freelancers, and solo entrepreneurs.",
@@ -43,7 +49,8 @@ export const websitePlans: WebsitePlan[] = [
   },
   {
     name: "Evergreen",
-    price: "$2,000",
+    priceWas: "$2,500",
+    price: "$1,799",
     note: "Most popular choice",
     description:
       "A multi-page website with everything a growing business needs. Professional, polished, and built for credibility.",
@@ -62,7 +69,8 @@ export const websitePlans: WebsitePlan[] = [
   },
   {
     name: "Canopy",
-    price: "$2,850",
+    priceWas: "$3,400",
+    price: "$2,499",
     note: "The full experience",
     description:
       "A premium, fully custom website for businesses that want to stand out. Every detail is tailored to your brand.",
@@ -82,6 +90,7 @@ export const websitePlans: WebsitePlan[] = [
 export const carePlans: CarePlan[] = [
   {
     name: "Sprout Care",
+    priceAmountWas: "$120",
     priceAmount: "$95",
     pricePeriod: "/month",
     tagline: "Essential maintenance",
@@ -98,6 +107,7 @@ export const carePlans: CarePlan[] = [
   },
   {
     name: "Growth Care",
+    priceAmountWas: "$199",
     priceAmount: "$165",
     pricePeriod: "/month",
     tagline: "Active support",
@@ -119,9 +129,9 @@ export const carePlans: CarePlan[] = [
 
 /** Contact form — “Interested in” dropdown (matches site packages & care plans). */
 export const contactInterestedOptions = [
-  "Seedling – From $1,250",
-  "Evergreen – From $2,000",
-  "Canopy – From $2,850",
+  "Seedling – From $999",
+  "Evergreen – From $1,799",
+  "Canopy – From $2,499",
   "Sprout Care – $95/mo",
   "Growth Care – $165/mo",
   "Not Sure",

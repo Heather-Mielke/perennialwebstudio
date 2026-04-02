@@ -1330,6 +1330,19 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
   line-height: 1.5;
 }
 
+/* Screen-reader-only copy for pricing (visible row uses aria-hidden) */
+.price-card__visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Website packages only — icons, footer pricing, cream cards (care plans keep default .price-card) */
 .section--website-packages .pricing {
   align-items: stretch;
@@ -1435,6 +1448,7 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 }
 
 .section--website-packages .price-card__price-row {
+  position: relative;
   margin: 0 0 1rem;
   font-family: var(--font-display);
   font-size: clamp(1.2rem, 2.4vw, 1.55rem);
@@ -1442,10 +1456,26 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
   color: var(--forest);
   letter-spacing: -0.02em;
   line-height: 1.25;
+}
+
+.section--website-packages .price-card__price-visual {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.3rem 0.45rem;
+}
+
+.section--website-packages .price-card__price-was {
+  font-size: 0.78em;
+  font-weight: 600;
+  color: rgba(30, 30, 30, 0.42);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+}
+
+.section--website-packages .price-card__price-visual:has(.price-card__price-was) .price-card__price-num {
+  font-size: 1.06em;
 }
 
 .section--website-packages .price-card__price-start {
@@ -1454,6 +1484,7 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 
 .section--website-packages .price-card__price-num {
   font-family: var(--font-display);
+  color: var(--accent-orange);
 }
 
 .section--website-packages .price-card__one-time {
@@ -1600,20 +1631,39 @@ html.home-scroll-reveal .site-body--home main.site-main > section.section.sectio
 }
 
 .section--care-plans .price-card__care-price-row {
+  position: relative;
   margin: 0 0 1rem;
+}
+
+.section--care-plans .price-card__care-price-visual {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.2rem 0.45rem;
 }
 
+.section--care-plans .price-card__care-amount-was {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-weight: 600;
+  color: rgba(30, 30, 30, 0.42);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.1em;
+  line-height: 1.1;
+}
+
 .section--care-plans .price-card__care-amount {
   font-family: var(--font-display);
   font-size: clamp(1.65rem, 3vw, 2.05rem);
   font-weight: 700;
-  color: var(--forest);
+  color: var(--accent-orange);
   letter-spacing: -0.02em;
   line-height: 1.1;
+}
+
+.section--care-plans .price-card__care-price-visual:has(.price-card__care-amount-was) .price-card__care-amount {
+  font-size: clamp(1.72rem, 3.1vw, 2.12rem);
 }
 
 .section--care-plans .price-card__care-period {

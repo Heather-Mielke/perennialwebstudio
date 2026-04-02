@@ -53,9 +53,17 @@ import { websitePlans } from "../data/pricing.ts";
         <footer class="price-card__footer">
           <div class="price-card__divider" aria-hidden="true" />
           <p class="price-card__price-row">
-            <span class="price-card__price-start">Starting at</span>
-            <span class="price-card__price-num">{p.price}</span>
-            <span class="price-card__one-time">(one-time)</span>
+            <span class="price-card__visually-hidden">
+              {p.priceWas
+                ? `Starting at ${p.price} one-time, previously ${p.priceWas}.`
+                : `Starting at ${p.price} one-time.`}
+            </span>
+            <span aria-hidden="true" class="price-card__price-visual">
+              <span class="price-card__price-start">Starting at</span>
+              {p.priceWas && <span class="price-card__price-was">{p.priceWas}</span>}
+              <span class="price-card__price-num">{p.price}</span>
+              <span class="price-card__one-time">(one-time)</span>
+            </span>
           </p>
           <a
             class={`button price-card__cta ${p.featured ? "button--primary" : "button--secondary price-card__cta--outline"}`}

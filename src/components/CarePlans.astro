@@ -47,8 +47,16 @@ import { carePlans } from "../data/pricing.ts";
         <footer class="price-card__footer">
           <div class="price-card__divider" aria-hidden="true" />
           <p class="price-card__care-price-row">
-            <span class="price-card__care-amount">{p.priceAmount}</span>
-            <span class="price-card__care-period">{p.pricePeriod}</span>
+            <span class="price-card__visually-hidden">
+              {p.priceAmountWas
+                ? `Currently ${p.priceAmount} per month, previously ${p.priceAmountWas} per month.`
+                : `${p.priceAmount} per month.`}
+            </span>
+            <span aria-hidden="true" class="price-card__care-price-visual">
+              {p.priceAmountWas && <span class="price-card__care-amount-was">{p.priceAmountWas}</span>}
+              <span class="price-card__care-amount">{p.priceAmount}</span>
+              <span class="price-card__care-period">{p.pricePeriod}</span>
+            </span>
           </p>
           <a
             class={`button price-card__cta ${p.featured ? "button--primary" : "button--secondary price-card__cta--outline-care"}`}
