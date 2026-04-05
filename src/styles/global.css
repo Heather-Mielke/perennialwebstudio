@@ -49,8 +49,8 @@
   --site-main-pad-x: var(--page-pad);
   --section-panel-max: 75rem;
 
-  /* Sawtooth top + bottom; stretches with band (preserveAspectRatio none) */
-  --spiky-band-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0,5 L2.5,0 L5,5 L7.5,0 L10,5 L12.5,0 L15,5 L17.5,0 L20,5 L22.5,0 L25,5 L27.5,0 L30,5 L32.5,0 L35,5 L37.5,0 L40,5 L42.5,0 L45,5 L47.5,0 L50,5 L52.5,0 L55,5 L57.5,0 L60,5 L62.5,0 L65,5 L67.5,0 L70,5 L72.5,0 L75,5 L77.5,0 L80,5 L82.5,0 L85,5 L87.5,0 L90,5 L92.5,0 L95,5 L97.5,0 L100,5 L100,95 L97.5,100 L95,95 L92.5,100 L90,95 L87.5,100 L85,95 L82.5,100 L80,95 L77.5,100 L75,95 L72.5,100 L70,95 L67.5,100 L65,95 L62.5,100 L60,95 L57.5,100 L55,95 L52.5,100 L50,95 L47.5,100 L45,95 L42.5,100 L40,95 L37.5,100 L35,95 L32.5,100 L30,95 L27.5,100 L25,95 L22.5,100 L20,95 L17.5,100 L15,95 L12.5,100 L10,95 L7.5,100 L5,95 L2.5,100 L0,95 Z'/%3E%3C/svg%3E");
+  /* Sawtooth top + bottom: half as many teeth (wider), ~2% depth (shallow); stretches with band */
+  --spiky-band-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath fill='white' d='M0,2 L5,0 L10,2 L15,0 L20,2 L25,0 L30,2 L35,0 L40,2 L45,0 L50,2 L55,0 L60,2 L65,0 L70,2 L75,0 L80,2 L85,0 L90,2 L95,0 L100,2 L100,98 L95,100 L90,98 L85,100 L80,98 L75,100 L70,98 L65,100 L60,98 L55,100 L50,98 L45,100 L40,98 L35,100 L30,98 L25,100 L20,98 L15,100 L10,98 L5,100 L0,98 Z'/%3E%3C/svg%3E");
   /* Min width keeps zig period from collapsing on narrow viewports (mask centered; sides crop) */
   --spiky-band-mask-size-x: max(100%, 46rem);
 }
@@ -1500,12 +1500,6 @@ html.home-scroll-reveal
 
 .site-body--home .section--care-plans .pricing > * {
   min-width: 0;
-}
-
-/* Home: “What we offer” + care plans — no band shadow */
-.site-body--home .section--website-packages.section--flow,
-.site-body--home .section--care-plans.section--flow {
-  box-shadow: none;
 }
 
 /* Care plans — vertical rhythm (keep as-is) */

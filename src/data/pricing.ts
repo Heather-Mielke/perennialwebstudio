@@ -16,7 +16,7 @@ export type CarePlan = {
   name: string;
   /** Strikethrough amount before sale, e.g. "$120" */
   priceAmountWas?: string;
-  /** Large amount only, e.g. "$95" */
+  /** Large amount only, e.g. "$75" */
   priceAmount: string;
   /** e.g. "/month" */
   pricePeriod: string;
@@ -91,7 +91,7 @@ export const carePlans: CarePlan[] = [
   {
     name: "Sprout Care",
     priceAmountWas: "$120",
-    priceAmount: "$95",
+    priceAmount: "$75",
     pricePeriod: "/month",
     tagline: "Essential maintenance",
     description:
@@ -108,7 +108,7 @@ export const carePlans: CarePlan[] = [
   {
     name: "Growth Care",
     priceAmountWas: "$199",
-    priceAmount: "$165",
+    priceAmount: "$125",
     pricePeriod: "/month",
     tagline: "Active support",
     description:
@@ -132,8 +132,8 @@ export const contactInterestedOptions = [
   "Seedling – From $999",
   "Evergreen – From $1,799",
   "Canopy – From $2,499",
-  "Sprout Care – $95/mo",
-  "Growth Care – $165/mo",
+  "Sprout Care – $75/mo",
+  "Growth Care – $125/mo",
   "Not Sure",
 ] as const;
 
