@@ -5,10 +5,10 @@
 @import "tailwindcss/utilities.css" layer(utilities);
 
 :root {
-  /* Organic premium palette (forest + cream, reference mocks) */
-  --forest: #1a533e;
-  --forest-deep: #143d30;
-  --forest-mid: #2a6b52;
+  /* Organic palette — saturated emerald-green + cream (slightly deep for contrast) */
+  --forest: #1c6e4e;
+  --forest-deep: #134c38;
+  --forest-mid: #348f6a;
   --cream: #f9f8f4;
   --cream-warm: #fdfcf8;
 
@@ -16,13 +16,13 @@
   --plum-dark: var(--forest);
   --mauve-light: #7ecfb0;
   --magenta-primary: var(--forest);
-  --grey-purple: #5c7268;
+  --grey-purple: #4a6e5c;
   --hero-bg: var(--cream);
   --gradient-plum-band: linear-gradient(
     118deg,
-    #174030 0%,
+    #14503b 0%,
     var(--forest) 48%,
-    #0f2e24 100%
+    #0f3829 100%
   );
   --header-bg: #ffffff;
   --rounded-section-inset: clamp(0.75rem, 2.5vw, 1.5rem);
@@ -30,11 +30,11 @@
   --purple-dark: var(--forest);
   --purple-mid: var(--forest-mid);
   --purple-light: #d8ebe4;
-  --purple-tint: rgba(26, 83, 62, 0.2);
-  --purple-soft: rgba(26, 83, 62, 0.08);
-  --purple-divider: rgba(26, 83, 62, 0.14);
-  --plum-rgb: 26, 83, 62;
-  --magenta-rgb: 26, 83, 62;
+  --plum-rgb: 28, 110, 78;
+  --magenta-rgb: 28, 110, 78;
+  --purple-tint: rgba(var(--plum-rgb), 0.2);
+  --purple-soft: rgba(var(--plum-rgb), 0.08);
+  --purple-divider: rgba(var(--plum-rgb), 0.14);
 
   --charcoal: #1e1e1e;
   --offwhite: var(--cream);
@@ -590,11 +590,11 @@ body {
   background:
     linear-gradient(
       168deg,
-      rgba(26, 83, 62, 0.09) 0%,
-      rgba(26, 83, 62, 0.03) 28%,
+      rgba(var(--plum-rgb), 0.09) 0%,
+      rgba(var(--plum-rgb), 0.03) 28%,
       transparent 52%,
       transparent 62%,
-      rgba(26, 83, 62, 0.045) 100%
+      rgba(var(--plum-rgb), 0.045) 100%
     ),
     radial-gradient(ellipse 85% 55% at 12% 18%, rgba(var(--plum-rgb), 0.08), transparent 52%),
     radial-gradient(ellipse 70% 48% at 92% 72%, rgba(var(--plum-rgb), 0.06), transparent 48%),
@@ -1005,7 +1005,7 @@ html.home-scroll-reveal
   display: block;
   width: 72px;
   height: 3px;
-  background: linear-gradient(90deg, var(--forest), var(--forest-mid), rgba(26, 83, 62, 0.25));
+  background: linear-gradient(90deg, var(--forest), var(--forest-mid), rgba(var(--plum-rgb), 0.25));
   margin-top: 0.85rem;
   border-radius: 2px;
 }
@@ -1229,15 +1229,15 @@ html.home-scroll-reveal
 
 /* How it works — forest band + dot texture (same treatment as home “What we offer”) */
 .section--alt.section--process {
-  background-color: #174030;
+  background-color: #14503b;
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.19) 0.72px, transparent 0.82px),
-    linear-gradient(155deg, #1e5c46 0%, var(--forest) 42%, #0f2e24 100%);
+    linear-gradient(155deg, #1a5f47 0%, var(--forest) 42%, #0f3829 100%);
   background-size: 14px 14px, 100% 100%;
   background-position: 0 0, 0 0;
   background-repeat: repeat, no-repeat;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 50px rgba(15, 46, 36, 0.25);
+  box-shadow: 0 20px 50px rgba(var(--plum-rgb), 0.22);
 }
 
 .section--alt.section--process .section__head h2 {
@@ -1358,7 +1358,7 @@ html.home-scroll-reveal
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-color: #174030;
+  background-color: #14503b;
   background-image:
     radial-gradient(rgba(255, 255, 255, 0.19) 0.72px, transparent 0.82px),
     var(--gradient-plum-band);
@@ -1556,7 +1556,7 @@ html.home-scroll-reveal
 }
 
 .services {
-  background: linear-gradient(155deg, #174030 0%, var(--forest) 48%, #0f2e24 100%);
+  background: linear-gradient(155deg, #14503b 0%, var(--forest) 48%, #0f3829 100%);
   border-radius: 16px;
   padding: 1.35rem 1.15rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
@@ -2816,7 +2816,7 @@ html.home-scroll-reveal
   flex-shrink: 0;
   width: 100%;
   box-sizing: border-box;
-  background: linear-gradient(165deg, #174030 0%, var(--forest-deep) 42%, #0c2820 100%);
+  background: linear-gradient(165deg, #14503b 0%, var(--forest-deep) 42%, #0e261e 100%);
   color: rgba(255, 255, 255, 0.92);
   padding: 1.15rem 0 1rem;
   margin-top: 1.25rem;
