@@ -2363,6 +2363,11 @@ html.home-scroll-reveal
   box-sizing: border-box;
 }
 
+.section--care-plans > .smallprint {
+  margin-top: clamp(0.75rem, 2vw, 1.25rem);
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+}
+
 .subhead {
   margin: 1.5rem 0 0.85rem;
   font-size: 1.05rem;
