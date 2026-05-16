@@ -12,11 +12,6 @@ const year = new Date().getFullYear();
 
 const contactRows = [
   {
-    label: "Email",
-    value: "perennialwebstudio.@gmail.com",
-    href: "perennialwebstudio.@gmail.com",
-  },
-  {
     label: "Location",
     value: "Minnesota, USA — remote projects welcome nationwide",
   },
@@ -66,6 +61,14 @@ const contactRows = [
       </p>
       <address class="footer__contact">
         <dl class="footer__meta">
+          <div class="footer__meta-row">
+            <dt class="footer__label">Email</dt>
+            <dd class="footer__value">
+              <a class="footer__contact-link" href="mailto:perennialwebstudio@gmail.com">
+                perennialwebstudio@gmail.com
+              </a>
+            </dd>
+          </div>
           {contactRows.map((row) => (
             <div
               class:list={[
@@ -74,15 +77,7 @@ const contactRows = [
               ]}
             >
               <dt class="footer__label">{row.label}</dt>
-              <dd class="footer__value">
-                {row.href ? (
-                  <a class="footer__contact-link" href={row.href}>
-                    {row.value}
-                  </a>
-                ) : (
-                  row.value
-                )}
-              </dd>
+              <dd class="footer__value">{row.value}</dd>
             </div>
           ))}
         </dl>

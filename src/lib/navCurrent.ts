@@ -102,7 +102,20 @@ function setLinkCurrent(link: HTMLAnchorElement, current: boolean): void {
 let pendingTargetId: string | null = null;
 let pendingTargetUntil = 0;
 
+/** In-page nav only — never treat mailto/tel/external URLs as home hash targets. */
+function isInternalSiteNavHref(href: string): boolean {
+  const t = href.trim().toLowerCase();
+  if (!t) return false;
+  if (t.startsWith("mailto:")) return false;
+  if (t.startsWith("tel:")) return false;
+  if (t.startsWith("javascript:")) return false;
+  if (t.startsWith("http://") || t.startsWith("https://")) return false;
+  if (t.startsWith("//")) return false;
+  return true;
+}
+
 function getPendingTargetFromHref(href: string): string | null {
+  if (!isInternalSiteNavHref(href)) return null;
   const { path, hash } = parseNavHref(href);
   if (path !== "/" || !hash) return null;
   const id = hash.slice(1).trim().toLowerCase();
@@ -150,6 +163,7 @@ export function initNavCurrent(): void {
   document.querySelectorAll<HTMLAnchorElement>("a[data-nav-href]").forEach((link) => {
     link.addEventListener("click", () => {
       const href = link.getAttribute("data-nav-href") || link.getAttribute("href") || "";
+      if (!isInternalSiteNavHref(href)) return;
       const pending = getPendingTargetFromHref(href);
       if (!pending || normalizePathname(window.location.pathname) !== "/") return;
       pendingTargetId = pending;
